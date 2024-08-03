@@ -26,7 +26,7 @@ The ETL pipeline leverages the following AWS services:
 3. **Event Trigger**: An S3 Object Created event triggers EventBridge.
 4. **Step Functions Execution**: EventBridge invokes a Step Function state machine.
 5. **Crawler Execution**: The Step Function starts a Glue Crawler to catalog the new data.
-6. **ETL Job Execution**: Once the crawler completes, the Step Function starts a Glue Job to process and transform the data.
+6. **ETL Job Execution**: Once the crawler completes, the Step Function starts a Glue Job to process and transform the data. ![Glue_Job](Lamudi-ETL.py)
 
 ### Step Function Worflow
 ### Diagram
@@ -34,6 +34,7 @@ The ETL pipeline leverages the following AWS services:
 ![Step Function Diagram](Lamudi_StepFunctions.png)
 
 ### Orchestration
+![Step Function Code](Step_Function)
 
 The Step Function orchestrates the ETL process as follows:
 
