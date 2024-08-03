@@ -14,3 +14,17 @@ The ETL pipeline leverages the following AWS services:
 - **Step Functions**: Orchestrates the workflow of the ETL process.
 - **Glue Crawlers**: Catalogs the data stored in S3.
 - **Glue Job**: Performs the transformation of the data.
+
+## Workflow Diagram
+
+![ETL Workflow Diagram](AWS-ETL.jpg)
+
+## Workflow
+
+1. **Data Upload to S3**: Data is uploaded to an S3 bucket.
+2. **Email Notification**: An SNS Topic sends an email notification when a CSV file is uploaded to S3.
+3. **Event Trigger**: An S3 Object Created event triggers EventBridge.
+4. **Step Functions Execution**: EventBridge invokes a Step Function state machine.
+5. **Crawler Execution**: The Step Function starts a Glue Crawler to catalog the new data.
+6. **ETL Job Execution**: Once the crawler completes, the Step Function starts a Glue Job to process and transform the data.
+
