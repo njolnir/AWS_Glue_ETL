@@ -1,0 +1,45 @@
+{
+  "StartAt": "Start Crawler",
+  "States": {
+    "Start Crawler": {
+      "Type": "Task",
+      "Next": "Get Crawler status",
+      "Parameters": {
+        "Name": "lamudi-crawler"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler"
+    },
+    "Get Crawler status": {
+      "Type": "Task",
+      "Parameters": {
+        "Name": "lamudi-crawler"
+      },
+      "Resource": "arn:aws:states:::aws-sdk:glue:getCrawler",
+      "Next": "Check Crawler status"
+    },
+    "Check Crawler status": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.Crawler.State",
+          "StringEquals": "RUNNING",
+          "Next": "Wait"
+        }
+      ],
+      "Default": "Glue StartJobRun"
+    },
+    "Glue StartJobRun": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun",
+      "Parameters": {
+        "JobName": "Lamudi-ETL"
+      },
+      "End": true
+    },
+    "Wait": {
+      "Type": "Wait",
+      "Seconds": 30,
+      "Next": "Get Crawler status"
+    }
+  }
+}
