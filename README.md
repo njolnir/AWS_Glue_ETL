@@ -33,3 +33,17 @@ The ETL pipeline leverages the following AWS services:
 
 ![Step Function Diagram](Lamudi_StepFunctions.png)
 
+### Orchestration
+
+The Step Function orchestrates the ETL process as follows:
+
+1. **Start Crawler**: Begins the Glue Crawler to catalog new data in S3.
+2. **Get Crawler Status**: Retrieves the current status of the Glue Crawler.
+3. **Check Crawler Status**: Checks if the crawler is still running.
+   - If the crawler is running, the state machine waits for 30 seconds and then rechecks the crawler status.
+   - If the crawler is not running, the state machine proceeds to start the Glue Job.
+4. **Glue Start Job Run**: Starts the Glue Job to process and transform the data.
+
+For more details on the web scraping source, visit [Lamudi Scraper GitHub Repository](https://github.com/njolnir/Lamudi_Scraper).
+
+
