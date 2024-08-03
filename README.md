@@ -28,3 +28,8 @@ The ETL pipeline leverages the following AWS services:
 5. **Crawler Execution**: The Step Function starts a Glue Crawler to catalog the new data.
 6. **ETL Job Execution**: Once the crawler completes, the Step Function starts a Glue Job to process and transform the data.
 
+### Step Function Worflow
+### Diagram
+
+![Step Function Diagram](Lamudi_StepFunctions.png)
+
