@@ -17,7 +17,7 @@ The ETL pipeline leverages the following AWS services:
 
 ## Workflow Diagram
 
-![ETL Workflow Diagram](AWS-ETL.jpg)
+![ETL Workflow Diagram](AW-ETL.jpg)
 
 ## Workflow
 
